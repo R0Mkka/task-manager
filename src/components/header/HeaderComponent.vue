@@ -59,7 +59,7 @@
         align-content: center;
         flex-shrink: 0;
         height: 60px;
-        border-bottom: 1px solid black;
+        border-bottom: 1px solid #5a95f4;
     }
 
     .header__person-info,
@@ -86,6 +86,7 @@
     }
 
     .header__add-task-button button {
+        position: relative;
         display: flex;
         justify-content: center;
         align-items: center;
@@ -94,6 +95,16 @@
         border: none;
         border-radius: 5px;
         background-color: #5a95f4;
+        color: #ffffff;
+        transition: .3s all ease-in-out;
+    }
+
+    .header__add-task-button button:hover {
+        background-color: black;
+    }
+
+    .header__add-task-button button:active {
+        top: 1px;
     }
 
     .header__add-task-button button span {

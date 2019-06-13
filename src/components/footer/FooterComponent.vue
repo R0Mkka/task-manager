@@ -4,6 +4,10 @@
             <img class="image" :src="getPictureUrl('common/time')">
             <span class="bold600">{{ currentTime }}</span>
         </div>
+
+        <div class="footer__copyright">
+            <span class="bold600">Task Manager | Aleksanov Roman &#169; 2019</span>
+        </div>
     </div>
 </template>
 
@@ -33,12 +37,20 @@
         align-items: center;
         flex-shrink: 0;
         height: 60px;
-        border-top: 1px solid black;
+        border-top: 1px solid #5a95f4;
     }
 
     .footer__time {
         display: flex;
         align-items: center;
+        flex-shrink: 0;
+    }
+
+    .footer__copyright {
+        display: flex;
+        justify-content: flex-end;
+        flex-grow: 1;
+        margin-right: 10px;
     }
 </style>
 

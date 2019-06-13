@@ -5,12 +5,19 @@
             <img class="image" :src="getPictureById(this.statusImage)" />
             
             <div class="section__clear-list">
-                <img class="clickable" :src="getPictureUrl('common/trash')" :title="hoverTitle" />
+                <img class="clickable"
+                     :src="getPictureUrl('common/trash')"
+                     :title="hoverTitle"
+                     @click="clearSection"/>
             </div>
         </div>
 
         <div class="section__content">
-            <Card v-for="card in cards" :key="card">
+            <div class="section__empty" v-if="cardsRef.length === 0">
+                <span class="light300">The list is empty.</span>
+            </div>
+
+            <Card v-for="card in cardsRef" :key="card">
                 {{ card }}
             </Card>
         </div>
@@ -43,12 +50,15 @@
         },
         data() {
             return {
-
+                cardsRef: this.cards
             }
         },
         methods: {
             getPictureById: getPictureById.bind(this),
-            getPictureUrl: getPictureUrl.bind(this)
+            getPictureUrl: getPictureUrl.bind(this),
+            clearSection() {
+                this.cardsRef = [];
+            }
         },
         computed: {
             statusImage() {
@@ -76,13 +86,29 @@
         flex-shrink: 0;
         width: 30%;
         min-width: 300px;
+        max-height: 100%;
         margin: 0 10px;
         padding: 15px;
         background-color: white;
         border-radius: 10px;
-        /* box-shadow: 1px 1px 1px 1px black; */
         box-shadow: 3px 3px 8px 0px rgba(0, 0, 0, .2);
         box-sizing: border-box;
+        overflow-x: hidden;
+        overflow-y: auto;
+    }
+
+    .section::-webkit-scrollbar {
+        width: 10px;
+        scroll-behavior: smooth;
+    }
+
+    .section::-webkit-scrollbar-thumb {
+        background: #888;
+        border-radius: 0px 10px 10px 0px;
+    }
+
+    .section::-webkit-scrollbar-thumb:hover {
+        background: #555; 
     }
 
     .section__header {
@@ -90,7 +116,7 @@
         align-items: center;
         padding-left: 10px;
         padding-bottom: 15px;
-        border-bottom: 1px solid black;
+        border-bottom: 1px solid #5a95f4;
     }
 
     .section__clear-list {
@@ -105,5 +131,10 @@
 
     .section__content {
         margin: 10px;
+    }
+
+    .section__empty {
+        display: flex;
+        justify-content: center;
     }
 </style>
