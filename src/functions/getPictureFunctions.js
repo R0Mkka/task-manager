@@ -1,7 +1,5 @@
 export function getPictureById(statusImage) {
-    const pictureName = statusImage;
-
-    return require(`../assets/images/statuses/${pictureName}.svg`);
+    return require(`../assets/images/statuses/${statusImage}.svg`);
 }
 
 export function getPictureUrl(pictureName) {

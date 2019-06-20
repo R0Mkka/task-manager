@@ -4,11 +4,13 @@
             <span class="bold600">{{ title }}</span>
             <img class="image" :src="getPictureById(this.statusImage)" />
             
-            <div class="section__clear-list">
-                <img class="clickable"
-                     :src="getPictureUrl('common/trash')"
-                     :title="hoverTitle"
-                     @click="clearSection"/>
+            <div class="section__action-list">
+                <div class="clickable action-wrapper mr10">
+                    <img :src="getPictureUrl('common/trash-white')"
+                        :title="hoverTitle"
+                        @click="clearSection"
+                    />
+                </div>
             </div>
         </div>
 
@@ -71,9 +73,9 @@
             },
             hoverTitle() {
                 switch(this.id) {
-                    case 1: return 'Clear the "To Do" section';
-                    case 2: return 'Clear the "In Progress" section';
-                    case 3: return 'Clear the "Finished" section';
+                    case 1: return 'Clear "To Do" section';
+                    case 2: return 'Clear "In Progress" section';
+                    case 3: return 'Clear "Finished" section';
                     default: return '';
                 }
             }
@@ -103,12 +105,12 @@
     }
 
     .section::-webkit-scrollbar-thumb {
-        background: #888;
+        background-color: #5a95f4;
         border-radius: 0px 10px 10px 0px;
     }
 
     .section::-webkit-scrollbar-thumb:hover {
-        background: #555; 
+        background-color: #5a95f4; 
     }
 
     .section__header {
@@ -119,14 +121,10 @@
         border-bottom: 1px solid #5a95f4;
     }
 
-    .section__clear-list {
+    .section__action-list {
         display: flex;
         justify-content: flex-end;
         flex-grow: 1;
-    }
-
-    .section__clear-list img {
-        margin-right: 10px;
     }
 
     .section__content {

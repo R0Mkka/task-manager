@@ -1,18 +1,25 @@
 <template>
-    <transition name="fade" @after-enter="showContent = true" appear>
-        <div class="modal" @click="showContent = false">
+    <transition name="fade" @after-enter="showBody = true" appear>
+        <div class="modal" @click="showBody = false">
             <transition name="fade" @after-leave="closeModal">
-                <div v-if="showContent" class="content" @click.stop>
-                    <div class="close" @click="closeModal">
-                        <img src="../../assets/images/common/menu-close.svg">
+                <div v-if="showBody" class="body" @click.stop>
+                    <div class="close">
+                        <img class="clickable" src="../../assets/images/common/menu-close.svg" @click="closeModal">
                     </div>
-                
-                    <span>
-                        Lorem ipsum dolor sit amet, consectetur adipisicing elit. 
-                        Quisquam, placeat, unde! Architecto laboriosam ducimus atque 
-                        cum dolore doloribus obcaecati vero. Minus porro sapiente 
-                        unde fuga incidunt quidem necessitatibus mollitia libero?
-                    </span>
+
+                    <div class="body__header">
+                        <span class="bold600">New task</span>
+                    </div>
+                    
+                    <div class="body__content">
+                        <input class="field" type="text">
+                        <input class="field" type="text">
+                        <input class="field" type="text">
+                    </div>
+
+                    <div class="body__actions">
+                        <button>Add</button>
+                    </div>
                 </div>
             </transition>
         </div>
@@ -23,7 +30,7 @@
     export default {
         data () {
             return {
-                showContent: false
+                showBody: false
             }
         },
         methods: {
@@ -48,8 +55,9 @@
         z-index: 1000;
     }
 
-    .content {
-        width: 500px;
+    .body {
+        position: relative;
+        width: 300px;
         padding: 20px;
         border-radius: 3px;
         background-color: #ffffff;
@@ -58,6 +66,36 @@
         line-height: 1.5;
         box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
         box-sizing: border-box;
+    }
+
+    .body .close {
+        position: absolute;
+        top: 18px;
+        right: 18px;
+    }
+
+    .body__header {
+        margin-bottom: 20px;
+        text-align: center;
+    }
+
+    .body__content {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .body__content .field {
+        margin-bottom: 25px;
+        padding: 5px 10px;
+        border: 2px solid #5a95f4;
+        border-radius: 5px;
+        font-size: 14px;
+    }
+
+    .body__actions {
+        display: flex;
+        justify-content: center;
     }
 
     .fade-enter, .fade-leave-to {

@@ -28,7 +28,7 @@
         flex-wrap: wrap;
         flex-grow: 1;
         padding: 20px;
-        background-color: #e8fdff;
+        background-color: rgba(240, 240, 240, .5);
         box-sizing: border-box;
     }
 </style>

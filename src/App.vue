@@ -32,6 +32,7 @@ export default {
 </script>
 
 <style>
+    /* --- GLOBAL --- */
     body {
         margin: 0;
         padding: 0;
@@ -42,7 +43,7 @@ export default {
         font-family: inherit;
     }
 
-    button {
+    button, input {
         outline: none;
     }
 
@@ -50,6 +51,7 @@ export default {
         background-color: transparent;
     }
 
+    /* --- APP --- */
     #app {
         position: fixed;
         display: flex;
@@ -63,6 +65,7 @@ export default {
         margin: 0 10px;
     }
 
+    /* --- MODIFICATORS --- */
     .clickable {
         cursor: pointer;
     }
@@ -73,5 +76,21 @@ export default {
 
     .bold600 {
         font-weight: 600;
+    }
+
+    .mr10 { margin-right: 10px; }
+    .ml10 { margin-left: 10px; }
+    .mt10 { margin-top: 10px; }
+    .mb10 { margin-bottom: 10px; }
+
+    /* --- CUSTOM ELEMENTS --- */
+    .action-wrapper {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 30px;
+        height: 30px;
+        border-radius: 3px;
+        background-color: #5a95f4;
     }
 </style>

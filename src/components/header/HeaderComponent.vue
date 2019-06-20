@@ -15,7 +15,7 @@
         <div class="header__add-task-button">
             <button class="clickable" @click="addTaskModal">
                 <span class="bold600">Add task</span>
-                <img :src="getPictureUrl('common/add')">
+                <img :src="getPictureUrl('common/add-white')">
             </button>
         </div>
 
