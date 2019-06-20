@@ -1,6 +1,6 @@
 <template>
     <div class="root-container">
-        <Header></Header>
+        <Header @show-modal="showModal"></Header>
         <Content></Content>
         <Footer></Footer>
     </div>
@@ -16,6 +16,11 @@
             Header,
             Content,
             Footer
+        },
+        methods: {
+            showModal() {
+                this.$emit('show-modal');
+            }
         }
     }
 </script>

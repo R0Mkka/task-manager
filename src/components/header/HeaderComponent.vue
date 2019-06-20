@@ -13,7 +13,7 @@
         </div>
 
         <div class="header__add-task-button">
-            <button class="clickable">
+            <button class="clickable" @click="addTaskModal">
                 <span class="bold600">Add task</span>
                 <img :src="getPictureUrl('common/add')">
             </button>
@@ -32,7 +32,8 @@
                 timerId: null,
                 currentTime: new Date().toLocaleString(),
                 arrowImage: 'common/arrow-down',
-                menuImage: 'common/menu-normal'
+                menuImage: 'common/menu-normal',
+                isModalShown: false
             }
         }, 
         methods: {
@@ -48,6 +49,9 @@
                 this.menuImage = (this.menuImage === 'common/menu-normal')
                     ? 'common/menu-close'
                     : 'common/menu-normal';
+            },
+            addTaskModal() {
+                this.$emit('show-modal');
             }
         }
     }

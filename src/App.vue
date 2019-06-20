@@ -1,15 +1,32 @@
 <template>
   <div id="app">
-      <RootContainer></RootContainer>
+      <Modal v-if="isModalShown" @close="hideModal"></Modal>
+
+      <RootContainer @show-modal="showModal"></RootContainer>
   </div>
 </template>
 
 <script>
 import RootContainer from './components/RootContainerComponent';
+import Modal from './components/shared/ModalComponent';
 
 export default {
     components: {
-        RootContainer
+        RootContainer,
+        Modal
+    },
+    data() {
+        return {
+            isModalShown: false
+        }
+    },
+    methods: {
+        hideModal() {
+            this.isModalShown = false;
+        },
+        showModal() {
+            this.isModalShown = true;
+        }
     }
 }
 </script>
