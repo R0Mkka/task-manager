@@ -5,7 +5,7 @@
             <img class="image" :src="getPictureById(this.statusImage)" />
             
             <div class="section__action-list">
-                <div class="clickable action-wrapper mr10">
+                <div class="clickable action-wrapper red-back mr10">
                     <img :src="getPictureUrl('common/trash-white')"
                         :title="hoverTitle"
                         @click="clearSection"

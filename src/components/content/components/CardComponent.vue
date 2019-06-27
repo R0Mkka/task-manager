@@ -1,5 +1,5 @@
 <template>
-    <div class="card clickable" @click="toggleCard($event)">
+    <div :class="['card', 'clickable', { 'expanded': isExpanded }]" @click="expandCard">
         <div class="card__header">
             <div class="card__title">
                 <span>{{ cardInfo.title }}</span>
@@ -16,10 +16,12 @@
             </div>
 
             <div class="card__actions mt10">
-                <div class="action-wrapper">
-                    <img :src="getPictureUrl('common/trash-white')"
-                        @click="removeCard"
-                    />
+                <div class="action-wrapper" title="Roll up" @click.stop="rollUpCard">
+                    <img :src="getPictureUrl('common/expand-arrow-up-white')"/>
+                </div>
+
+                <div class="action-wrapper red-back ml10" title="Delete" @click="removeCard">
+                    <img :src="getPictureUrl('common/trash-white')"/>
                 </div>
             </div>
         </div>
@@ -56,18 +58,13 @@
         },
         methods: {
             getPictureUrl: getPictureUrl.bind(this),
-            toggleCard(event) {
-                const { currentTarget } = event;
-
-                if (this.isExpanded) {
-                    currentTarget.classList.remove('expanded');
-                    this.isExpanded = false;
-
-                    return;
+            expandCard() {
+                if (!this.isExpanded) {
+                    this.isExpanded = true;
                 }
-
-                currentTarget.classList.add('expanded');
-                this.isExpanded = true;
+            },
+            rollUpCard() {
+                this.isExpanded = false;
             },
             removeCard() {
                 console.log(this.cardInfo);
@@ -97,9 +94,9 @@
         position: relative;
         display: flex;
         flex-direction: column;
-        height: 52px;
-        max-height: 52px;
-        min-height: 52px;
+        height: 54px;
+        max-height: 54px;
+        min-height: 54px;
         margin: 10px 0;
         padding: 15px;
         border-radius: 5px;
@@ -116,7 +113,7 @@
 
     .card__header {
         flex-shrink: 0;
-        margin-bottom: 20px;
+        /* margin-bottom: 20px; */
     }
 
     .card__title {
@@ -160,6 +157,10 @@
     .expanded {
         height: 100%;
         max-height: 400px;
+    }
+
+    .expanded .card__header {
+        margin-bottom: 20px;
     }
 
     .expanded .card__title {

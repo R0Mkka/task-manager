@@ -92,5 +92,15 @@ export default {
         height: 30px;
         border-radius: 3px;
         background-color: #5a95f4;
+        transition: .3s all ease-in-out;
+    }
+
+    .action-wrapper:hover {
+        transform: scale(1.05);
+    }
+
+    .action-wrapper.red-back:hover {
+        background-color: rgb(230, 0, 0);
+        transform: scale(1.05);
     }
 </style>
