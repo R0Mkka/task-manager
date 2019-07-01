@@ -7,18 +7,38 @@
                         <img class="clickable" src="../../assets/images/common/menu-close.svg" @click="closeModal">
                     </div>
 
+                    <div class="body__flag">
+                        <div class="incision"></div>
+                    </div>
+
                     <div class="body__header">
                         <span class="bold600">New task</span>
                     </div>
                     
                     <div class="body__content">
-                        <input class="field" type="text">
-                        <input class="field" type="text">
-                        <input class="field" type="text">
+                        <div class="input-wrapper">
+                            <label for="task-title" class="input-label">Title</label>
+                            <input class="input-field" id="task-title" ref="taskTitle" type="text">
+                        </div>
+
+                        <div class="input-wrapper">
+                            <label for="task-importance" class="input-label">Importance</label>
+                            
+                            <select class="input-field" id="task-importance" ref="taskImportance" type="text">
+                                <option value="High">High</option>
+                                <option value="Medium">Medium</option>
+                                <option value="Low">Low</option>                                
+                            </select>
+                        </div>
+
+                        <div class="input-wrapper">
+                            <label for="task-description" class="input-label">Description</label>
+                            <textarea class="input-field" id="task-description" ref="taskDescription" rows="3" type="text"></textarea>
+                        </div>
                     </div>
 
                     <div class="body__actions">
-                        <button>Add</button>
+                        <button @click="createTask">Create</button>
                     </div>
                 </div>
             </transition>
@@ -28,6 +48,9 @@
 
 <script>
     export default {
+        mounted() {
+            setTimeout(() => this.$refs.taskTitle.focus(), 250);
+        },
         data () {
             return {
                 showBody: false
@@ -35,6 +58,28 @@
         },
         methods: {
             closeModal() {
+                this.$emit('close');
+            },
+            createTask() {
+                const titleField = this.$refs.taskTitle;
+                const importanceField = this.$refs.taskImportance;
+                const descriptionField = this.$refs.taskDescription;
+                
+                const formData = {
+                    title: titleField.value,
+                    importance: importanceField.value,
+                    description: descriptionField.value
+                };
+
+                for (const key in formData) {
+                    if (formData[key].length === 0) {
+                        return;
+                    }
+                }
+
+                this.$store.commit('addToDo', formData);
+                console.log(this.$store.getters.toDoList);
+
                 this.$emit('close');
             }
         }
@@ -57,7 +102,7 @@
 
     .body {
         position: relative;
-        width: 300px;
+        width: 500px;
         padding: 20px;
         border-radius: 3px;
         background-color: #ffffff;
@@ -74,22 +119,60 @@
         right: 18px;
     }
 
+    .body__flag {
+        position: absolute;
+        top: 0;
+        z-index: 0;
+        left: 80px;
+        width: 50px;
+        height: 60px;
+        background-color: #5a95f4;
+    }
+
+    .body__flag .incision {
+        position: absolute;
+        bottom: -25px;
+        width: 50px;
+        height: 50px;
+        background-color: #ffffff;
+        transform: rotate(45deg);
+    }
+
     .body__header {
         margin-bottom: 20px;
         text-align: center;
     }
 
     .body__content {
+        position: relative;
         display: flex;
         flex-direction: column;
         align-items: center;
+        padding: 0 30px;
     }
 
-    .body__content .field {
+    .body__content .input-wrapper {
+        display: flex;
+        width: 100%;
         margin-bottom: 25px;
+    }
+
+    .input-wrapper .input-label {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-shrink: 0;
+        width: 40%;
+        border-radius: 5px 0 0 5px;
+        background-color: #5a95f4;
+        color: #ffffff;
+    }
+
+    .input-wrapper .input-field {
+        flex-grow: 1;
         padding: 5px 10px;
         border: 2px solid #5a95f4;
-        border-radius: 5px;
+        border-radius: 0 5px 5px 0;
         font-size: 14px;
     }
 

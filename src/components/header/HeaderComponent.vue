@@ -15,7 +15,7 @@
         <div class="header__add-task-button">
             <button class="clickable" @click="addTaskModal">
                 <span class="bold600">Add task</span>
-                <img :src="getPictureUrl('common/add-white')">
+                <img :src="getPictureUrl('common/white/add-white')">
             </button>
         </div>
 
@@ -96,6 +96,7 @@
         align-items: center;
         min-width: 120px;
         height: 40px;
+        padding: 0 20px;
         border: none;
         border-radius: 5px;
         background-color: #5a95f4;
@@ -104,7 +105,7 @@
     }
 
     .header__add-task-button button:hover {
-        background-color: black;
+        background-color: #1c74ff;
     }
 
     .header__add-task-button button:active {

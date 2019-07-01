@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-      <Modal v-if="isModalShown" @close="hideModal"></Modal>
+      <Modal v-if="isModalShown" @close="hideModal" @create-task="createTask"></Modal>
 
       <RootContainer @show-modal="showModal"></RootContainer>
   </div>
@@ -24,8 +24,16 @@ export default {
         hideModal() {
             this.isModalShown = false;
         },
+        createTask(formData) {
+            
+        },
         showModal() {
             this.isModalShown = true;
+        },
+        onClick() {
+            this.$store.commit('increment');
+
+            console.log(this.$store.state.count);
         }
     }
 }
@@ -43,8 +51,12 @@ export default {
         font-family: inherit;
     }
 
-    button, input {
+    button, input, textarea, select, option {
         outline: none;
+    }
+
+    textarea {
+        resize: none;
     }
 
     img::selection {
@@ -58,6 +70,7 @@ export default {
         justify-content: center;
         width: 100vw;
         height: 100vh;
+        background-color: rgba(255, 255, 255, .6);
         overflow: hidden;
     }
 

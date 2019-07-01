@@ -1,8 +1,8 @@
 <template>
     <div class="content">
-        <Section :id="1" title="To Do"></Section>
-        <Section :id="2" title="In Progress"></Section>
-        <Section :id="3" title="Finished"></Section>
+        <Section :id="1" title="To Do" dataName="toDoList"></Section>
+        <Section :id="2" title="In Progress" dataName="inProgressList"></Section>
+        <Section :id="3" title="Finished" dataName="finishedList"></Section>
     </div>
 </template>
 

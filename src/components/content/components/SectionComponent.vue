@@ -5,21 +5,20 @@
             <img class="image" :src="getPictureById(this.statusImage)" />
             
             <div class="section__action-list">
-                <div class="clickable action-wrapper red-back mr10">
-                    <img :src="getPictureUrl('common/trash-white')"
+                <div class="clickable action-wrapper red-back mr10" @click="clearSection">
+                    <img :src="getPictureUrl('common/white/trash-white')"
                         :title="hoverTitle"
-                        @click="clearSection"
                     />
                 </div>
             </div>
         </div>
 
-        <div class="section__content">
-            <div class="section__empty" v-if="cardsRef.length === 0">
+        <div class="section__content" v-if="cardList">
+            <div class="section__empty" v-if="cardList.length === 0">
                 <span class="light300">The list is empty.</span>
             </div>
 
-            <Card v-for="card in cardsRef" :key="card">
+            <Card v-for="card in cardList" :key="card.title">
                 {{ card }}
             </Card>
         </div>
@@ -35,24 +34,22 @@
             Card
         },
         props: {
-            id: {
+        id: {
                 type: Number,
                 required: false
             },
             title: {
                 type: String,
                 required: true,
-                default: 'Default Title'
             },
-            cards: {
-                type: Array,
-                required: false,
-                default: () => [1, 2, 3]
+            dataName: {
+                type: String,
+                required: true
             }
         },
         data() {
             return {
-                cardsRef: this.cards
+                // cardList: []
             }
         },
         methods: {
@@ -78,6 +75,9 @@
                     case 3: return 'Clear "Finished" section';
                     default: return '';
                 }
+            },
+            cardList() {
+                return this.$store.getters[this.dataName];
             }
         }
     }

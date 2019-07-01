@@ -17,11 +17,11 @@
 
             <div class="card__actions mt10">
                 <div class="action-wrapper" title="Roll up" @click.stop="rollUpCard">
-                    <img :src="getPictureUrl('common/expand-arrow-up-white')"/>
+                    <img :src="getPictureUrl('common/white/expand-arrow-up-white')"/>
                 </div>
 
                 <div class="action-wrapper red-back ml10" title="Delete" @click="removeCard">
-                    <img :src="getPictureUrl('common/trash-white')"/>
+                    <img :src="getPictureUrl('common/white/trash-white')"/>
                 </div>
             </div>
         </div>
@@ -41,7 +41,7 @@
                         title: 'Task title Task title Task title Task title Task title Task title Task title',
                         priority: {
                             type: 'High',
-                            title: 'High priority'
+                            title: 'High importance'
                         },
                         necessaryTime: '1h',
                         description: 'Some description',
