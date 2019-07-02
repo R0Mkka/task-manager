@@ -1,5 +1,5 @@
-export function getPictureById(statusImage) {
-    return require(`../assets/images/statuses/${statusImage}.svg`);
+export function getPictureByStatusName(statusName) {
+    return require(`../assets/images/statuses/${statusName}.svg`);
 }
 
 export function getPictureUrl(pictureName) {

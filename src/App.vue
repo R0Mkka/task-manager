@@ -43,6 +43,10 @@ export default {
         font-family: inherit;
     }
 
+    *::selection {
+        background-color: transparent;
+    }
+
     button, input, textarea, select, option {
         outline: none;
     }

@@ -1,18 +1,21 @@
 <template>
     <div class="content">
-        <Section :id="1" title="To Do"></Section>
-        <Section :id="2" title="In Progress"></Section>
-        <Section :id="3" title="Finished"></Section>
+        <Section :sectionInfo="toDoSectionInfo"></Section>
+        <Section :sectionInfo="inProgressSectionInfo"></Section>
+        <Section :sectionInfo="finishedSectionInfo"></Section>
     </div>
 </template>
 
 <script>
     import Section from './components/SectionComponent';
+    import { toDoSectionInfo, inProgressSectionInfo, finishedSectionInfo } from '../../configs/content-component-config';
 
     export default {
         data() {
             return {
-                
+                toDoSectionInfo,
+                inProgressSectionInfo,
+                finishedSectionInfo
             }
         },
         components: {

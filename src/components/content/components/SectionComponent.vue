@@ -2,13 +2,11 @@
     <div class="section">
         <div class="section__header">
             <span class="bold600">{{ title }}</span>
-            <img class="image" :src="getPictureById(this.statusImage)" />
+            <img class="image" :src="getPictureByStatusName(this.statusImage)" />
             
             <div class="section__action-list">
                 <div class="clickable action-wrapper red-back mr10" @click="clearSection">
-                    <img :src="getPictureUrl('common/white/trash-white')"
-                        :title="hoverTitle"
-                    />
+                    <img :src="getPictureUrl('common/white/trash-white')" :title="hoverTitle" />
                 </div>
             </div>
         </div>
@@ -18,27 +16,28 @@
                 <span class="light300">The list is empty.</span>
             </div>
 
-            <Card v-for="card in cardList" :key="card.title" :cardData="card" :sectionTitle="title"></Card>
+            <Card v-for="card in cardList" 
+                :key="card.title" 
+                :cardData="card"
+                :cardActions="sectionInfo.actions"
+                :sectionTitle="title">
+            </Card>
         </div>
     </div>
 </template>
 
 <script>
     import Card from './CardComponent';
-    import { getPictureById, getPictureUrl } from '../../../functions/getPictureFunctions';
+    import { getPictureByStatusName, getPictureUrl } from '../../../functions/getPictureFunctions';
 
     export default {
         components: {
             Card
         },
         props: {
-            id: {
-                type: Number,
-                required: false
-            },
-            title: {
-                type: String,
-                required: true,
+            sectionInfo: {
+                type: Object,
+                required: true
             }
         },
         data() {
@@ -47,39 +46,24 @@
             }
         },
         methods: {
-            getPictureById: getPictureById.bind(this),
+            getPictureByStatusName: getPictureByStatusName.bind(this),
             getPictureUrl: getPictureUrl.bind(this),
             clearSection() {
-                this.$store.commit(this.clearActionName);
+                this.$store.commit(this.sectionInfo.clearActionName);
             }
         },
         computed: {
+            title() {
+                return this.sectionInfo.title;
+            },
             statusImage() {
-                switch(this.id) {
-                    case 1: return 'to-do';
-                    case 2: return 'in-progress';
-                    case 3: return 'finished';
-                    default: return '';
-                }
+                return this.sectionInfo.statusImage;
             },
             hoverTitle() {
-                return `Clear "${this.title}" section`;
-            },
-            formedTitle() {
-                const splitTitle = this.title.split(' ');
-
-                splitTitle[0] = splitTitle[0].toLowerCase();
-
-                return splitTitle.join('');
-            },
-            dataName() {
-                return `${this.formedTitle}List`;
-            },
-            clearActionName() {
-                return `${this.formedTitle}Clear`;
+                return `Clear "${this.sectionInfo.title}" section`;
             },
             cardList() {
-                return this.$store.getters[this.dataName];
+                return this.$store.getters[this.sectionInfo.getterName];
             }
         }
     }

@@ -16,7 +16,15 @@
             </div>
 
             <div class="card__actions mt10">
-                <div class="action-wrapper" title="Roll up" @click.stop="rollUpCard">
+                <div v-for="(action, index) in cardActions"
+                    class="action-wrapper ml10"
+                    :key="action.key"
+                    :title="action.title"
+                    @click="callActionHanler(index)">
+                    <img :src="getPictureUrl(action.image)"/>
+                </div>
+
+                <div class="action-wrapper ml10" title="Roll up" @click.stop="rollUpCard">
                     <img :src="getPictureUrl('common/white/expand-arrow-up-white')"/>
                 </div>
 
@@ -36,7 +44,7 @@
         props: {
             cardData: {
                 type: Object,
-                required: false,
+                required: true,
                 default: () => {
                     return {
                         id: randomiser.generate(),
@@ -52,6 +60,11 @@
                         // dateFinished: '-'
                     }
                 }
+            },
+            cardActions: {
+                type: Array,
+                required: true,
+                default: () => []
             },
             sectionTitle: {
                 type: String,
@@ -76,6 +89,9 @@
             },
             removeCard() {
                 this.$store.commit(this.removeItemActionName, this.cardData.id);
+            },
+            callActionHanler(actionIndex) {
+                this.cardActions[actionIndex].handler.call(this);
             }
         },
         computed: {
