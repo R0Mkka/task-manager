@@ -4,11 +4,11 @@ export const toDoSectionInfo = {
     getterName: 'toDoList',
     clearActionName: 'toDoClear',
     statusImage: 'to-do',
-    actions: [
+    cardActions: [
         {
             key: '1',
-            title: 'Move to in progress',
-            image: 'common/white/in-progress-white',
+            title: 'Move to "In progress"',
+            image: 'statuses/white/in-progress-white',
             handler: function() {
                 if (this) {
                     this.$store.commit('toDoRemoveItem', this.cardData.id);
@@ -18,8 +18,8 @@ export const toDoSectionInfo = {
         },
         {
             key: '2',
-            title: 'Move to finished',
-            image: 'common/white/finished-white',
+            title: 'Move to "Finished"',
+            image: 'statuses/white/finished-white',
             handler: function() {
                 if (this) {
                     this.$store.commit('toDoRemoveItem', this.cardData.id);
@@ -35,7 +35,31 @@ export const inProgressSectionInfo = {
     title: 'In Progress',
     getterName: 'inProgressList',
     clearActionName: 'inProgressClear',
-    statusImage: 'in-progress'
+    statusImage: 'in-progress',
+    cardActions: [
+        {
+            key: '1',
+            title: 'Move to "To Do"',
+            image: 'statuses/white/to-do-white',
+            handler: function() {
+                if (this) {
+                    this.$store.commit('inProgressRemoveItem', this.cardData.id);
+                    this.$store.commit('addToDo', this.cardData);
+                }
+            }
+        },
+        {
+            key: '2',
+            title: 'Move to "Finished"',
+            image: 'statuses/white/finished-white',
+            handler: function() {
+                if (this) {
+                    this.$store.commit('inProgressRemoveItem', this.cardData.id);
+                    this.$store.commit('addFinished', this.cardData);
+                }
+            }
+        }
+    ]
 };
 
 export const finishedSectionInfo = {
@@ -43,5 +67,29 @@ export const finishedSectionInfo = {
     title: 'Finished',
     getterName: 'finishedList',
     clearActionName: 'finishedClear',
-    statusImage: 'finished'
+    statusImage: 'finished',
+    cardActions: [
+        {
+            key: '1',
+            title: 'Move to "To Do"',
+            image: 'statuses/white/to-do-white',
+            handler: function() {
+                if (this) {
+                    this.$store.commit('finishedRemoveItem', this.cardData.id);
+                    this.$store.commit('addToDo', this.cardData);
+                }
+            }
+        },
+        {
+            key: '2',
+            title: 'Move to "In Progress"',
+            image: 'statuses/white/in-progress-white',
+            handler: function() {
+                if (this) {
+                    this.$store.commit('finishedRemoveItem', this.cardData.id);
+                    this.$store.commit('addInProgress', this.cardData);
+                }
+            }
+        }
+    ]
 };

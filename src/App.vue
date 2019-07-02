@@ -11,6 +11,10 @@ import RootContainer from './components/RootContainerComponent';
 import Modal from './components/shared/ModalComponent';
 
 export default {
+    // APP WAS STARTED
+    mounted() {
+        this.$store.commit('loadFromLocaleStorage');
+    },
     components: {
         RootContainer,
         Modal
@@ -43,7 +47,7 @@ export default {
         font-family: inherit;
     }
 
-    *::selection {
+    img::selection, button::selection {
         background-color: transparent;
     }
 
@@ -90,9 +94,21 @@ export default {
     .mr10 { margin-right: 10px; }
     .ml10 { margin-left: 10px; }
     .mt10 { margin-top: 10px; }
+    .mt20 { margin-top: 20px; }
     .mb10 { margin-bottom: 10px; }
 
+    /* --- FLEX --- */
+
+    .fg1 {
+        flex-grow: 1;
+    }
+
+    .fsh0 {
+        flex-shrink: 0;
+    }
+
     /* --- CUSTOM ELEMENTS --- */
+    /* 111 */
     .action-wrapper {
         display: flex;
         justify-content: center;
@@ -111,5 +127,39 @@ export default {
     .action-wrapper.red-back:hover {
         background-color: rgb(230, 0, 0);
         transform: scale(1.05);
+    }
+
+    /* 222 */
+    .primary-action {
+        position: relative;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        min-width: 120px;
+        height: 40px;
+        padding: 0 20px;
+        border: none;
+        border-radius: 5px;
+        background-color: #5a95f4;
+        color: #ffffff;
+        transition: .3s all ease-in-out;
+    }
+
+    .primary-action:hover {
+        background-color: #1c74ff;
+    }
+
+    .primary-action:active {
+        top: 1px;
+    }
+
+    .primary-action span {
+        font-size: 14px;
+        font-weight: 700;
+        text-transform: uppercase;
+    }
+
+    .primary-action img {
+        margin-left: 5px;
     }
 </style>

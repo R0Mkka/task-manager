@@ -38,7 +38,10 @@
                     </div>
 
                     <div class="body__actions">
-                        <button @click="createTask">Create</button>
+                        <button class="modal__create-button primary-action clickable" @click="createTask">
+                            <span>Create</span>
+                            <img :src="getPictureUrl('common/white/add-white')">
+                        </button>
                     </div>
                 </div>
             </transition>
@@ -47,6 +50,8 @@
 </template>
 
 <script>
+    import { getPictureUrl } from '../../functions/getPictureFunctions';
+
     export default {
         mounted() {
             setTimeout(() => this.$refs.taskTitle.focus(), 250);
@@ -57,6 +62,7 @@
             }
         },
         methods: {
+            getPictureUrl: getPictureUrl.bind(this),
             closeModal() {
                 this.$emit('close');
             },
@@ -123,7 +129,7 @@
         position: absolute;
         top: 0;
         z-index: 0;
-        left: 80px;
+        left: 90px;
         width: 50px;
         height: 60px;
         background-color: #5a95f4;
@@ -158,6 +164,7 @@
     }
 
     .input-wrapper .input-label {
+        cursor: text;
         display: flex;
         justify-content: center;
         align-items: center;
@@ -179,6 +186,21 @@
     .body__actions {
         display: flex;
         justify-content: center;
+    }
+
+    .modal__create-buttonasdffsa {
+        position: relative;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        min-width: 120px;
+        height: 40px;
+        padding: 0 20px;
+        border: none;
+        border-radius: 5px;
+        background-color: #5a95f4;
+        color: #ffffff;
+        transition: .3s all ease-in-out;
     }
 
     .fade-enter, .fade-leave-to {

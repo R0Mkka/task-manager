@@ -19,7 +19,7 @@
             <Card v-for="card in cardList" 
                 :key="card.title" 
                 :cardData="card"
-                :cardActions="sectionInfo.actions"
+                :cardActions="sectionInfo.cardActions"
                 :sectionTitle="title">
             </Card>
         </div>

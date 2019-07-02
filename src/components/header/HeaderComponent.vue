@@ -13,7 +13,7 @@
         </div>
 
         <div class="header__add-task-button">
-            <button class="clickable" @click="addTaskModal">
+            <button class="primary-action clickable" @click="addTaskModal">
                 <span class="bold600">Add task</span>
                 <img :src="getPictureUrl('common/white/add-white')">
             </button>
@@ -87,38 +87,6 @@
     .header__add-task-button {
         justify-content: flex-end;
         flex-grow: 1;
-    }
-
-    .header__add-task-button button {
-        position: relative;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        min-width: 120px;
-        height: 40px;
-        padding: 0 20px;
-        border: none;
-        border-radius: 5px;
-        background-color: #5a95f4;
-        color: #ffffff;
-        transition: .3s all ease-in-out;
-    }
-
-    .header__add-task-button button:hover {
-        background-color: #1c74ff;
-    }
-
-    .header__add-task-button button:active {
-        top: 1px;
-    }
-
-    .header__add-task-button button span {
-        font-size: 14px;
-        text-transform: uppercase;
-    }
-
-    .header__add-task-button button img {
-        margin-left: 5px;
     }
 
     .header__time {

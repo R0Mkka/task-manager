@@ -15,21 +15,23 @@
                 <span>{{ cardData.description }}</span>
             </div>
 
-            <div class="card__actions mt10">
+            <div class="card__actions mt20">
+                <div class="flex-wrapper fg1">
+                    <div class="action-wrapper red-back" title="Delete" @click="removeCard">
+                        <img :src="getPictureUrl('common/white/trash-white')"/>
+                    </div>
+                </div>
+
                 <div v-for="(action, index) in cardActions"
-                    class="action-wrapper ml10"
+                    class="action-wrapper ml10 fsh0"
                     :key="action.key"
                     :title="action.title"
                     @click="callActionHanler(index)">
                     <img :src="getPictureUrl(action.image)"/>
                 </div>
 
-                <div class="action-wrapper ml10" title="Roll up" @click.stop="rollUpCard">
+                <div class="action-wrapper ml10 fsh0" title="Roll up" @click.stop="rollUpCard">
                     <img :src="getPictureUrl('common/white/expand-arrow-up-white')"/>
-                </div>
-
-                <div class="action-wrapper red-back ml10" title="Delete" @click="removeCard">
-                    <img :src="getPictureUrl('common/white/trash-white')"/>
                 </div>
             </div>
         </div>
@@ -129,8 +131,8 @@
         display: flex;
         flex-direction: column;
         height: 54px;
-        max-height: 54px;
-        min-height: 54px;
+        /* max-height: 54px;
+        min-height: 54px; */
         margin: 10px 0;
         padding: 15px;
         border-radius: 5px;
@@ -147,7 +149,7 @@
 
     .card__header {
         flex-shrink: 0;
-        /* margin-bottom: 20px; */
+        /* max-height: 30%; */
     }
 
     .card__title {
@@ -157,10 +159,6 @@
         white-space: nowrap;
         text-overflow: ellipsis;
         overflow: hidden;
-    }
-
-    .card__importance {
-
     }
 
     .card__importance .square {
@@ -186,19 +184,32 @@
         display: flex;
         justify-content: flex-end;
         flex-shrink: 0;
+        height: 30px;
+        box-sizing: border-box;
     }
 
     .expanded {
-        height: 100%;
-        max-height: 400px;
+        height: 450px;
     }
 
     .expanded .card__header {
         margin-bottom: 20px;
+        /* overflow-x: hidden;
+        overflow-y: auto; */
     }
 
     .expanded .card__title {
-        white-space: normal;
+        white-space: pre-wrap;
+        word-break: break-all;
+        word-wrap: break-word;
+    }
+
+    .expanded .card__description {
+        white-space: pre-wrap;
+        word-break: break-all;
+        word-wrap: break-word;
+        /* overflow-x: hidden;
+        overflow-y: auto; */
     }
 </style>
 
