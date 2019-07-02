@@ -18,6 +18,18 @@ export default new Vuex.Store({
         },
         addFinished(state, payload) {
             state.finishedList = [ ...state.finishedList, payload ];
+        },
+        toDoClear(state) {
+            state.toDoList = [];
+        },
+        inProgressClear(state) {
+            state.inProgressList = [];
+        },
+        finishedClear(state) {
+            state.finishedList = [];
+        },
+        toDoPop(state, payload) {
+            state.toDoList = state.toDoList.filter(item => item.id !== payload);
         }
     },
     getters: {

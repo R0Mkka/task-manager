@@ -66,6 +66,7 @@
                 const descriptionField = this.$refs.taskDescription;
                 
                 const formData = {
+                    id: (Math.random() * (Math.random() * 12)).toFixed(20),
                     title: titleField.value,
                     importance: importanceField.value,
                     description: descriptionField.value
@@ -78,7 +79,6 @@
                 }
 
                 this.$store.commit('addToDo', formData);
-                console.log(this.$store.getters.toDoList);
 
                 this.$emit('close');
             }

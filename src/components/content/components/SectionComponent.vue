@@ -18,9 +18,7 @@
                 <span class="light300">The list is empty.</span>
             </div>
 
-            <Card v-for="card in cardList" :key="card.title">
-                {{ card }}
-            </Card>
+            <Card v-for="card in cardList" :key="card.title" :cardData="card"></Card>
         </div>
     </div>
 </template>
@@ -34,29 +32,25 @@
             Card
         },
         props: {
-        id: {
+            id: {
                 type: Number,
                 required: false
             },
             title: {
                 type: String,
                 required: true,
-            },
-            dataName: {
-                type: String,
-                required: true
             }
         },
         data() {
             return {
-                // cardList: []
+                
             }
         },
         methods: {
             getPictureById: getPictureById.bind(this),
             getPictureUrl: getPictureUrl.bind(this),
             clearSection() {
-                this.cardsRef = [];
+                this.$store.commit(this.clearName);
             }
         },
         computed: {
@@ -69,12 +63,20 @@
                 }
             },
             hoverTitle() {
-                switch(this.id) {
-                    case 1: return 'Clear "To Do" section';
-                    case 2: return 'Clear "In Progress" section';
-                    case 3: return 'Clear "Finished" section';
-                    default: return '';
-                }
+                return `Clear "${this.title}" section`;
+            },
+            formedTitle() {
+                const splitTitle = this.title.split(' ');
+
+                splitTitle[0] = splitTitle[0].toLowerCase();
+
+                return splitTitle.join('');
+            },
+            dataName() {
+                return `${this.formedTitle}List`;
+            },
+            clearName() {
+                return `${this.formedTitle}Clear`;
             },
             cardList() {
                 return this.$store.getters[this.dataName];

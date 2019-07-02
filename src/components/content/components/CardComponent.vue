@@ -2,17 +2,17 @@
     <div :class="['card', 'clickable', { 'expanded': isExpanded }]" @click="expandCard">
         <div class="card__header">
             <div class="card__title">
-                <span>{{ cardInfo.title }}</span>
+                <span>{{ cardData.title }}</span>
             </div>
 
-            <div class="card__priority">
-                <div class="square" :style="squareClass" :title="cardInfo.priority.title"></div>
+            <div class="card__importance">
+                <div class="square" :style="squareClass"></div>
             </div>
         </div>
 
         <div class="card__content" v-if="isExpanded">
             <div class="card__description" >
-                <span>{{ cardInfo.description }}</span>
+                <span>{{ cardData.description }}</span>
             </div>
 
             <div class="card__actions mt10">
@@ -33,20 +33,22 @@
 
     export default {
         props: {
-            cardInfo: {
+            cardData: {
                 type: Object,
                 required: false,
                 default: () => {
                     return {
+                        id: (Math.random() * (Math.random() * 12)).toFixed(20),
                         title: 'Task title Task title Task title Task title Task title Task title Task title',
-                        priority: {
-                            type: 'High',
-                            title: 'High importance'
-                        },
-                        necessaryTime: '1h',
+                        // importance: {
+                        //     type: 'High',
+                        //     title: 'High importance'
+                        // },
+                        importance: 'High',
+                        // necessaryTime: '1h',
                         description: 'Some description',
-                        dateStarted: new Date().toLocaleString(),
-                        dateFinished: '-'
+                        // dateStarted: new Date().toLocaleString(),
+                        // dateFinished: '-'
                     }
                 }
             }
@@ -67,7 +69,7 @@
                 this.isExpanded = false;
             },
             removeCard() {
-                console.log(this.cardInfo);
+                this.$store.commit('toDoPop', this.cardData.id);
             }
         },
         computed: {
@@ -76,7 +78,7 @@
                     backgroundColor: null
                 };
 
-                switch (this.cardInfo.priority.type) {
+                switch (this.cardData.importance) {
                     case 'Low': properies.backgroundColor = '#54ea5e'; break;
                     case 'Medium': properies.backgroundColor = 'orange'; break;
                     case 'High': properies.backgroundColor = 'red'; break;
@@ -125,11 +127,11 @@
         overflow: hidden;
     }
 
-    .card__priority {
+    .card__importance {
 
     }
 
-    .card__priority .square {
+    .card__importance .square {
         position: absolute;
         top: 10px;
         right: -30px;
