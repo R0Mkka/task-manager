@@ -18,7 +18,7 @@
                     <div class="body__content">
                         <div class="input-wrapper">
                             <label for="task-title" class="input-label">Title</label>
-                            <input class="input-field" id="task-title" ref="taskTitle" type="text">
+                            <input class="input-field" id="task-title" ref="taskTitle" type="text" @input="onInput($event)">
                         </div>
 
                         <div class="input-wrapper">
@@ -33,7 +33,12 @@
 
                         <div class="input-wrapper">
                             <label for="task-description" class="input-label">Description</label>
-                            <textarea class="input-field" id="task-description" ref="taskDescription" rows="3" type="text"></textarea>
+                            <textarea class="input-field" id="task-description"
+                                ref="taskDescription"
+                                rows="3"
+                                type="text"
+                                @input="onInput($event)">
+                            </textarea>
                         </div>
                     </div>
 
@@ -51,6 +56,7 @@
 
 <script>
     import { getPictureUrl } from '../../functions/getPictureFunctions';
+    import randomiser from '../../functions/randomiser';
 
     export default {
         mounted() {
@@ -66,13 +72,16 @@
             closeModal() {
                 this.$emit('close');
             },
+            onInput({ target }) {
+                target.style.backgroundColor = '#ffffff';
+            },
             createTask() {
                 const titleField = this.$refs.taskTitle;
                 const importanceField = this.$refs.taskImportance;
                 const descriptionField = this.$refs.taskDescription;
                 
                 const formData = {
-                    id: (Math.random() * (Math.random() * 12)).toFixed(20),
+                    id: randomiser.generate(),
                     title: titleField.value,
                     importance: importanceField.value,
                     description: descriptionField.value
@@ -80,6 +89,17 @@
 
                 for (const key in formData) {
                     if (formData[key].length === 0) {
+                        switch(key) {
+                            case 'title':
+                                this.$refs.taskTitle.style.backgroundColor = '#ffb5ba';
+                                break;
+                            case 'description':
+                                this.$refs.taskDescription.style.backgroundColor = '#ffb5ba';
+                                break;
+                            default:
+                                break;
+                        }
+
                         return;
                     }
                 }
@@ -181,6 +201,7 @@
         border: 2px solid #5a95f4;
         border-radius: 0 5px 5px 0;
         font-size: 14px;
+        transition: .3s all ease-in-out;
     }
 
     .body__actions {
