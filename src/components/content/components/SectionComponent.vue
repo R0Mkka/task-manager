@@ -18,7 +18,7 @@
                 <span class="light300">The list is empty.</span>
             </div>
 
-            <Card v-for="card in cardList" :key="card.title" :cardData="card"></Card>
+            <Card v-for="card in cardList" :key="card.title" :cardData="card" :sectionTitle="title"></Card>
         </div>
     </div>
 </template>
@@ -50,7 +50,7 @@
             getPictureById: getPictureById.bind(this),
             getPictureUrl: getPictureUrl.bind(this),
             clearSection() {
-                this.$store.commit(this.clearName);
+                this.$store.commit(this.clearActionName);
             }
         },
         computed: {
@@ -75,7 +75,7 @@
             dataName() {
                 return `${this.formedTitle}List`;
             },
-            clearName() {
+            clearActionName() {
                 return `${this.formedTitle}Clear`;
             },
             cardList() {

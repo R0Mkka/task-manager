@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-      <Modal v-if="isModalShown" @close="hideModal" @create-task="createTask"></Modal>
+      <Modal v-if="isModalShown" @close="hideModal"></Modal>
 
       <RootContainer @show-modal="showModal"></RootContainer>
   </div>
@@ -24,16 +24,8 @@ export default {
         hideModal() {
             this.isModalShown = false;
         },
-        createTask(formData) {
-            
-        },
         showModal() {
             this.isModalShown = true;
-        },
-        onClick() {
-            this.$store.commit('increment');
-
-            console.log(this.$store.state.count);
         }
     }
 }

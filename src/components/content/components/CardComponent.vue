@@ -30,6 +30,7 @@
 
 <script>
     import { getPictureUrl } from '../../../functions/getPictureFunctions';
+    import randomiser from '../../../functions/randomiser';
 
     export default {
         props: {
@@ -38,7 +39,7 @@
                 required: false,
                 default: () => {
                     return {
-                        id: (Math.random() * (Math.random() * 12)).toFixed(20),
+                        id: randomiser.generate(),
                         title: 'Task title Task title Task title Task title Task title Task title Task title',
                         // importance: {
                         //     type: 'High',
@@ -51,6 +52,11 @@
                         // dateFinished: '-'
                     }
                 }
+            },
+            sectionTitle: {
+                type: String,
+                required: true,
+                default: 'To Do'
             }
         },
         data() {
@@ -69,7 +75,7 @@
                 this.isExpanded = false;
             },
             removeCard() {
-                this.$store.commit('toDoPop', this.cardData.id);
+                this.$store.commit(this.removeItemActionName, this.cardData.id);
             }
         },
         computed: {
@@ -86,6 +92,16 @@
                 }
 
                 return properies;
+            },
+            formedTitle() {
+                const splitTitle = this.sectionTitle.split(' ');
+                
+                splitTitle[0] = splitTitle[0].toLowerCase();
+
+                return splitTitle.join('');
+            },
+            removeItemActionName() {
+                return `${this.formedTitle}RemoveItem`;
             }
         }
     }

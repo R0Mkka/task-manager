@@ -10,6 +10,7 @@ export default new Vuex.Store({
         finishedList: []
     },
     mutations: {
+        // ADD AN ITEM
         addToDo(state, payload) {
             state.toDoList = [ ...state.toDoList, payload ];
         },
@@ -19,6 +20,7 @@ export default new Vuex.Store({
         addFinished(state, payload) {
             state.finishedList = [ ...state.finishedList, payload ];
         },
+        // CLEAR THE LIST
         toDoClear(state) {
             state.toDoList = [];
         },
@@ -28,8 +30,15 @@ export default new Vuex.Store({
         finishedClear(state) {
             state.finishedList = [];
         },
-        toDoPop(state, payload) {
+        // REMOVE AN ITEM
+        toDoRemoveItem(state, payload) {
             state.toDoList = state.toDoList.filter(item => item.id !== payload);
+        },
+        inProgressRemoveItem(state, payload) {
+            state.inProgressList = state.inProgressList.filter(item => item.id !== payload);
+        },
+        finishedRemoveItem(state, payload) {
+            state.finishedList = state.finishedList.filter(item => item.id !== payload);
         }
     },
     getters: {
