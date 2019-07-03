@@ -32,7 +32,7 @@
                 timerId: null,
                 currentTime: new Date().toLocaleString(),
                 arrowImage: 'common/arrow-down',
-                menuImage: 'common/menu-normal',
+                menuImage: 'common/burger',
                 isModalShown: false
             }
         }, 
@@ -46,9 +46,9 @@
                     : 'common/arrow-down';
             },
             openMenu() {
-                this.menuImage = (this.menuImage === 'common/menu-normal')
-                    ? 'common/menu-close'
-                    : 'common/menu-normal';
+                this.menuImage = (this.menuImage === 'common/burger')
+                    ? 'common/close'
+                    : 'common/burger';
             },
             addTaskModal() {
                 this.$emit('show-modal');

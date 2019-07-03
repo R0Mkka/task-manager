@@ -7,7 +7,8 @@ export default new Vuex.Store({
     state: {
         toDoList: [],
         inProgressList: [],
-        finishedList: []
+        finishedList: [],
+        alertList: []
     },
     mutations: {
         // ADD AN ITEM
@@ -15,6 +16,11 @@ export default new Vuex.Store({
             state.toDoList = [ ...state.toDoList, payload ];
 
             this.commit('updateLocaleStorage');
+            this.commit('addAlert', {
+                id: Math.random(),
+                message: 'Task was successfully created.',
+                icon: 'Heh'
+            });
         },
         addInProgress(state, payload) {
             state.inProgressList = [ ...state.inProgressList, payload ];
@@ -25,6 +31,9 @@ export default new Vuex.Store({
             state.finishedList = [ ...state.finishedList, payload ];
 
             this.commit('updateLocaleStorage');
+        },
+        addAlert(state, payload) {
+            state.alertList = [ ...state.alertList, payload ];
         },
         //
         setToDoList(state, payload) {
@@ -68,6 +77,9 @@ export default new Vuex.Store({
 
             this.commit('updateLocaleStorage');
         },
+        alertRemoveItem(state, payload) {
+            state.alertList = state.alertList.filter(item => item.id !== payload);
+        },
         // LOCAL STORAGE
         loadFromLocaleStorage() {
             const stringData = localStorage.getItem('TaskManagerData');
@@ -101,6 +113,9 @@ export default new Vuex.Store({
         },
         finishedList(state) {
             return state.finishedList;
+        },
+        alertList(state) {
+            return state.alertList;
         }
     }
 });

@@ -3,12 +3,15 @@
       <Modal v-if="isModalShown" @close="hideModal"></Modal>
 
       <RootContainer @show-modal="showModal"></RootContainer>
+
+      <Alerts></Alerts>
   </div>
 </template>
 
 <script>
 import RootContainer from './components/RootContainerComponent';
 import Modal from './components/shared/ModalComponent';
+import Alerts from './components/shared/alerts/AlertsComponent';
 
 export default {
     // APP WAS STARTED
@@ -17,7 +20,8 @@ export default {
     },
     components: {
         RootContainer,
-        Modal
+        Modal,
+        Alerts
     },
     data() {
         return {
@@ -56,6 +60,7 @@ export default {
     }
 
     textarea {
+        margin: 0;
         resize: none;
     }
 

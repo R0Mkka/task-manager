@@ -4,7 +4,7 @@
             <transition name="fade" @after-leave="closeModal">
                 <div v-if="showBody" class="body" @click.stop>
                     <div class="close">
-                        <img class="clickable" src="../../assets/images/common/menu-close.svg" @click="closeModal">
+                        <img class="clickable" src="../../assets/images/common/close.svg" @click="closeModal">
                     </div>
 
                     <div class="body__flag">
