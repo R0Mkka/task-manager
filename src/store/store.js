@@ -16,11 +16,6 @@ export default new Vuex.Store({
             state.toDoList = [ ...state.toDoList, payload ];
 
             this.commit('updateLocaleStorage');
-            this.commit('addAlert', {
-                id: Math.random(),
-                message: 'Task was successfully created.',
-                icon: 'Heh'
-            });
         },
         addInProgress(state, payload) {
             state.inProgressList = [ ...state.inProgressList, payload ];

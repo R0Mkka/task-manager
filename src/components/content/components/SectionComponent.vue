@@ -29,6 +29,7 @@
 <script>
     import Card from './CardComponent';
     import { getPictureByStatusName, getPictureUrl } from '../../../functions/getPictureFunctions';
+    import { alertList } from '../../../configs/alerts-config';
 
     export default {
         components: {
@@ -49,7 +50,13 @@
             getPictureByStatusName: getPictureByStatusName.bind(this),
             getPictureUrl: getPictureUrl.bind(this),
             clearSection() {
-                this.$store.commit(this.sectionInfo.clearActionName);
+                if (this.cardList.length !== 0) {
+                    this.$store.commit(this.sectionInfo.clearActionName);
+
+                    this.$store.commit('addAlert', alertList.sectionCleared(this.title));
+                } else {
+                    this.$store.commit('addAlert', alertList.sectionEmpty(this.title));
+                }
             }
         },
         computed: {

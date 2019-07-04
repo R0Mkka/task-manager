@@ -1,16 +1,16 @@
 <template>
-    <div class="alert">
-        <div class="alert__indicator"></div>
+    <div class="alert" ref="alertRef">
+        <div class="alert__indicator" ref="indicatorRef"></div>
 
         <div class="alert__close-button clickable" @click="removeAlert">
             <img :src="getPictureUrl('alerts/close')">
         </div>
 
         <div class="alert__icon">
-            <img :src="getPictureUrl('alerts/done')">
+            <img :src="getPictureUrl(alertData.icon)">
         </div>
 
-        <div class="alert__message">
+        <div class="alert__message light300">
             <span>{{ alertData.message }}</span>
         </div>
     </div>
@@ -21,8 +21,10 @@
  
     export default {
         mounted() {
+            this.setUpIndicatorColor();
+            
             this.timerId = setTimeout(() => {
-                this.$store.commit('alertRemoveItem', this.alertData.id);
+                this.removeAlert();
             }, 3000);
         },
         data() {
@@ -37,8 +39,9 @@
                 default: () => {
                     return {
                         id: Math.random(),
-                        message: 'Alert message Alert message Alert message Alert message',
-                        icon: 'Heh'
+                        indicatorColor: '#14de0d',
+                        message: 'Default message',
+                        icon: 'alerts/green/done'
                     }
                 }
             }
@@ -50,7 +53,16 @@
                     clearTimeout(this.timerId);
                 }
 
-                this.$store.commit('alertRemoveItem', this.alertData.id);
+                this.$refs.alertRef.classList.add('close');
+                
+                this.timerId = setTimeout(() => {
+                    this.$store.commit('alertRemoveItem', this.alertData.id);
+
+                    this.$destroy();
+                }, 830);
+            },
+            setUpIndicatorColor() {
+                this.$refs.indicatorRef.style.backgroundColor = this.alertData.indicatorColor;
             }
         }
     }
@@ -60,19 +72,28 @@
     .alert {
         position: relative;
         display: flex;
+        align-items: center;
         width: 390px;
+        height: 105px;
+        max-height: 105px;
         background-color: #ffffff;
-        padding: 30px 35px;
-        margin-top: 20px;
+        padding: 0 35px 0 25px;
+        margin-top: 15px;
         box-sizing: border-box;
         box-shadow: 2px 2px 10px 0px rgba(0, 0, 0, .2);
         animation: appearance .8s;
+        transition: .5s all ease-in-out;
+    }
+
+    .alert.close {
+        opacity: 0;
+        animation: disappearance .8s;
     }
 
     .alert__close-button {
         position: absolute;
-        top: 15px;
-        right: 15px;
+        top: 12px;
+        right: 12px;
     }
 
     .alert__indicator {
@@ -81,7 +102,6 @@
         left: 0;
         width: 3px;
         height: 100%;
-        background-color: #14de0d;
     }
 
     .alert__icon, .alert__message {
@@ -90,7 +110,7 @@
     }
 
     .alert__icon {
-        margin-right: 10px;
+        margin-right: 20px;
     }
 
     .alert__icon img {
@@ -100,7 +120,6 @@
 
     .alert__message {
         font-size: 16px;
-        font-weight: 300;
     }
 
     @keyframes appearance {
@@ -112,6 +131,18 @@
         to {
             right: 0px;
             opacity: 1;
+        }
+    }
+
+    @keyframes disappearance {
+        from {
+            right: 0px;
+            opacity: 1;
+        }
+
+        to {
+            right: -420px;
+            opacity: 0;
         }
     }
 </style>

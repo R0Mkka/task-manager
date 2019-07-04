@@ -30,10 +30,8 @@
         data() {
             return {
                 timerId: null,
-                currentTime: new Date().toLocaleString(),
                 arrowImage: 'common/arrow-down',
-                menuImage: 'common/burger',
-                isModalShown: false
+                menuImage: 'common/burger'
             }
         }, 
         methods: {

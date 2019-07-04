@@ -10,6 +10,10 @@
             </div>
         </div>
 
+        <div class="card__created-date">
+            <span>Created: {{ cardData.createdDate }}</span>
+        </div>
+
         <div class="card__content" v-if="isExpanded">
             <div class="card__description" >
                 <span>{{ cardData.description }}</span>
@@ -40,6 +44,7 @@
 
 <script>
     import { getPictureUrl } from '../../../functions/getPictureFunctions';
+    import { alertList } from '../../../configs/alerts-config';
     import randomiser from '../../../functions/randomiser';
 
     export default {
@@ -91,6 +96,8 @@
             },
             removeCard() {
                 this.$store.commit(this.removeItemActionName, this.cardData.id);
+
+                this.$store.commit('addAlert', alertList.taskRemoved(this.cardData.title));
             },
             callActionHanler(actionIndex) {
                 this.cardActions[actionIndex].handler.call(this);
@@ -170,6 +177,13 @@
         transform: rotate(45deg);
     }
 
+    .card__created-date {
+        position: relative;
+        top: -10px;
+        display: none;
+        color: #cccccc;
+    }
+
     .card__content {
         display: flex;
         flex-direction: column;
@@ -194,8 +208,6 @@
 
     .expanded .card__header {
         margin-bottom: 20px;
-        /* overflow-x: hidden;
-        overflow-y: auto; */
     }
 
     .expanded .card__title {
@@ -204,12 +216,14 @@
         word-wrap: break-word;
     }
 
+    .expanded .card__created-date {
+        display: block;
+    }
+
     .expanded .card__description {
         white-space: pre-wrap;
         word-break: break-all;
         word-wrap: break-word;
-        /* overflow-x: hidden;
-        overflow-y: auto; */
     }
 </style>
 

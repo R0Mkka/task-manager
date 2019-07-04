@@ -27,5 +27,7 @@
         position: fixed;
         bottom: 75px;
         right: 20px;
+        display: flex;
+        flex-direction: column-reverse;
     }
 </style>

@@ -56,6 +56,7 @@
 
 <script>
     import { getPictureUrl } from '../../functions/getPictureFunctions';
+    import { alertList } from '../../configs/alerts-config';
     import randomiser from '../../functions/randomiser';
 
     export default {
@@ -84,7 +85,8 @@
                     id: randomiser.generate(),
                     title: titleField.value,
                     importance: importanceField.value,
-                    description: descriptionField.value
+                    description: descriptionField.value,
+                    createdDate: new Date().toLocaleString()
                 };
 
                 for (const key in formData) {
@@ -105,6 +107,7 @@
                 }
 
                 this.$store.commit('addToDo', formData);
+                this.$store.commit('addAlert', alertList.taskAdded(formData.title));
 
                 this.$emit('close');
             }
