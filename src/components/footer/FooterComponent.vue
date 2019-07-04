@@ -14,15 +14,24 @@
 <script>
     import { getPictureUrl } from '../../functions/getPictureFunctions';
 
+    const dateOptions = {
+        day: 'numeric',
+        month: 'long',
+        year: 'numeric',
+        hour: '2-digit',
+        minute: '2-digit',
+        second: '2-digit'
+    };
+
     export default {
         created() {
             setInterval(() => {
-                this.currentTime = new Date().toLocaleString()
+                this.currentTime = new Date().toLocaleString('en-GB', dateOptions);
             }, 1000);
         },
         data() {
             return {
-                currentTime: new Date().toLocaleString()
+                currentTime: new Date().toLocaleString('en-GB', dateOptions)
             }
         },
         methods: {

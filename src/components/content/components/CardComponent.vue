@@ -11,7 +11,7 @@
         </div>
 
         <div class="card__created-date">
-            <span>Created: {{ cardData.createdDate }}</span>
+            <span>{{ cardData.createdDate }}</span>
         </div>
 
         <div class="card__content" v-if="isExpanded">
@@ -182,6 +182,7 @@
         top: -10px;
         display: none;
         color: #cccccc;
+        font-size: 14px;
     }
 
     .card__content {

@@ -86,7 +86,13 @@
                     title: titleField.value,
                     importance: importanceField.value,
                     description: descriptionField.value,
-                    createdDate: new Date().toLocaleString()
+                    createdDate: new Date().toLocaleString('en-GB', {
+                        day: 'numeric',
+                        month: 'long',
+                        year: 'numeric',
+                        hour: '2-digit',
+                        minute: '2-digit'
+                    })
                 };
 
                 for (const key in formData) {

@@ -6,7 +6,7 @@ export const alertList = {
             id: randomiser.generate(),
             indicatorColor: '#14de0d',
             icon: 'alerts/done',
-            message: `Task ${`'${taskName}'`} was successfully created`
+            message: `Task '${taskName}' was successfully created`
         }
     },
     taskRemoved: (taskName) => {
@@ -14,7 +14,7 @@ export const alertList = {
             id: randomiser.generate(),
             indicatorColor: '#14de0d',
             icon: 'alerts/trash',
-            message: `Task ${`'${taskName}'`} was removed`
+            message: `Task '${taskName}' was removed`
         }
     },
     sectionCleared: (sectionName) => {
@@ -22,7 +22,7 @@ export const alertList = {
             id: randomiser.generate(),
             indicatorColor: '#14de0d',
             icon: 'alerts/trash',
-            message: `Section ${`'${sectionName}'`} was cleared`
+            message: `Section '${sectionName}' was cleared`
         }
     },
     sectionEmpty: (sectionName) => {
@@ -30,7 +30,7 @@ export const alertList = {
             id: randomiser.generate(),
             indicatorColor: 'orange',
             icon: 'alerts/warning',
-            message: `Section ${`'${sectionName}'`} is empty`
+            message: `Section '${sectionName}' is empty`
         }
     }
 };
