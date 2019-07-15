@@ -30,15 +30,21 @@ export default new Vuex.Store({
         addAlert(state, payload) {
             state.alertList = [ ...state.alertList, payload ];
         },
-        //
+        // SET
         setToDoList(state, payload) {
             state.toDoList = payload;
+
+            this.commit('updateLocaleStorage');
         },
         setInProgressList(state, payload) {
             state.inProgressList = payload;
+
+            this.commit('updateLocaleStorage');
         },
         setFinishedList(state, payload) {
             state.finishedList = payload;
+
+            this.commit('updateLocaleStorage');
         },
         // CLEAR THE LIST
         toDoClear(state) {

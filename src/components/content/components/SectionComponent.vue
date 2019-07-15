@@ -16,23 +16,29 @@
                 <span class="light300">The list is empty.</span>
             </div>
 
-            <Card v-for="card in cardList" 
-                :key="card.title" 
-                :cardData="card"
-                :cardActions="sectionInfo.cardActions"
-                :sectionTitle="title">
-            </Card>
+            <Draggable v-model="cardList" group="cards" class="section__cards-wrapper">
+                <Card v-for="card in cardList" 
+                    :key="card.title" 
+                    :cardData="card"
+                    :cardActions="sectionInfo.cardActions"
+                    :sectionTitle="title">
+                </Card>
+            </Draggable>
         </div>
     </div>
 </template>
 
 <script>
+    import Draggable from 'vuedraggable'
+
     import Card from './CardComponent';
+
     import { getPictureByStatusName, getPictureUrl } from '../../../functions/getPictureFunctions';
     import { alertList } from '../../../configs/alerts-config';
 
     export default {
         components: {
+            Draggable,
             Card
         },
         props: {
@@ -69,8 +75,13 @@
             hoverTitle() {
                 return `Clear "${this.sectionInfo.title}" section`;
             },
-            cardList() {
-                return this.$store.getters[this.sectionInfo.getterName];
+            cardList: {
+                get() {
+                    return this.$store.state[this.sectionInfo.stateDataName];
+                },
+                set(updatedCardList) {
+                    this.$store.commit(this.sectionInfo.setMutationName, updatedCardList);
+                }
             }
         }
     }

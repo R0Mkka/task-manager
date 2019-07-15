@@ -1,7 +1,8 @@
 export const toDoSectionInfo = {
     id: 1,
     title: 'To Do',
-    getterName: 'toDoList',
+    stateDataName: 'toDoList',
+    setMutationName: 'setToDoList',
     clearActionName: 'toDoClear',
     statusImage: 'to-do',
     cardActions: [
@@ -33,7 +34,8 @@ export const toDoSectionInfo = {
 export const inProgressSectionInfo = {
     id: 2,
     title: 'In Progress',
-    getterName: 'inProgressList',
+    stateDataName: 'inProgressList',
+    setMutationName: 'setInProgressList',
     clearActionName: 'inProgressClear',
     statusImage: 'in-progress',
     cardActions: [
@@ -65,7 +67,8 @@ export const inProgressSectionInfo = {
 export const finishedSectionInfo = {
     id: 3,
     title: 'Finished',
-    getterName: 'finishedList',
+    stateDataName: 'finishedList',
+    setMutationName: 'setFinishedList',
     clearActionName: 'finishedClear',
     statusImage: 'finished',
     cardActions: [

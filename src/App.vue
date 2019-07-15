@@ -17,6 +17,10 @@ export default {
     // APP WAS STARTED
     mounted() {
         this.$store.commit('loadFromLocaleStorage');
+
+        // document.addEventListener('dragstart', (event) => {
+        //     event.preventDefault();
+        // });
     },
     components: {
         RootContainer,
