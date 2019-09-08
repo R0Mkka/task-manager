@@ -30,6 +30,7 @@
         justify-content: space-around;
         flex-wrap: wrap;
         flex-grow: 1;
+        max-height: calc(100% - 120px);
         padding: 20px;
         background-color: rgba(240, 240, 240, .5);
         box-sizing: border-box;

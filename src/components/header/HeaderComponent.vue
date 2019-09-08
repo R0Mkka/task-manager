@@ -8,7 +8,7 @@
 
             <div class="header__mood">
                 <img :src="getPictureUrl('moods/best')">
-                <img class="clickable" :src="getPictureUrl(arrowImage)" @click="openMoodsList">
+                <!-- <img class="clickable" :src="getPictureUrl(arrowImage)" @click="openMoodsList"> -->
             </div>
         </div>
 
@@ -19,9 +19,9 @@
             </button>
         </div>
 
-        <div class="header__menu">
+        <!-- <div class="header__menu">
             <img class="image clickable" :src="getPictureUrl(menuImage)" @click="openMenu">
-        </div>
+        </div> -->
     </div>
 </template>
 

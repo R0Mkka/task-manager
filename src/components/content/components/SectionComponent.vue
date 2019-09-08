@@ -17,8 +17,8 @@
             </div>
 
             <Draggable v-model="cardList" group="cards" class="section__cards-wrapper">
-                <Card v-for="card in cardList" 
-                    :key="card.title" 
+                <Card v-for="(card, index) in cardList" 
+                    :key="index" 
                     :cardData="card"
                     :cardActions="sectionInfo.cardActions"
                     :sectionTitle="title">

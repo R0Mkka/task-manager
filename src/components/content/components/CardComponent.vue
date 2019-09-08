@@ -56,15 +56,8 @@
                     return {
                         id: randomiser.generate(),
                         title: 'Task title Task title Task title Task title Task title Task title Task title',
-                        // importance: {
-                        //     type: 'High',
-                        //     title: 'High importance'
-                        // },
                         importance: 'High',
-                        // necessaryTime: '1h',
-                        description: 'Some description',
-                        // dateStarted: new Date().toLocaleString(),
-                        // dateFinished: '-'
+                        description: 'Some description'
                     }
                 }
             },
@@ -138,8 +131,6 @@
         display: flex;
         flex-direction: column;
         height: 54px;
-        /* max-height: 54px;
-        min-height: 54px; */
         margin: 10px 0;
         padding: 15px;
         border-radius: 5px;
@@ -156,7 +147,6 @@
 
     .card__header {
         flex-shrink: 0;
-        /* max-height: 30%; */
     }
 
     .card__title {
@@ -227,5 +217,3 @@
         word-wrap: break-word;
     }
 </style>
-
-
